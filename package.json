@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "mysql2": "^2.3.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "employee-tracker",
+  "description": "Unit 12 Challenge",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamwagh512/Employee-Tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adamwagh512/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/adamwagh512/Employee-Tracker#readme"
+}
