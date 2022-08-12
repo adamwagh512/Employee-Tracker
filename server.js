@@ -32,21 +32,27 @@ function mainMenu() {
           query.viewAllRoles();
           mainMenu();
           break;
+
         case "View all employees":
           query.viewAllEmployees();
-          mainMenu
+          mainMenu();
           break;
+
         case "Add a department":
-          query.addDepartment('Quality Assurance');
+          query.addDepartment();
+          mainMenu();
           break;
+
         case "Add a role":
-          addRole();
+          query.addRole();
           break;
+
         case "Add an employee":
-          addEmployee();
+          query.addEmployee();
           break;
+
         case "Update an employee role":
-          updateRole();
+          query.updateRole();
           break;
       }
     });

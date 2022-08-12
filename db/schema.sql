@@ -52,8 +52,8 @@ VALUES
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES 
     (201, 'Jim', 'Halpert', 01, null),
-    (202, 'Dwight', 'Schrut', 02, 001),
+    (202, 'Dwight', 'Schrut', 02, 201),
     (203, 'Angela', 'Martin', 03, null),
-    (204, 'Kevin', 'Malone', 04, 003),
+    (204, 'Kevin', 'Malone', 04, 203),
     (205, 'Toby', 'Flenderson', 05, null),
-    (206, 'Holly', 'Flax', 06, 005);
+    (206, 'Holly', 'Flax', 06, 205);
