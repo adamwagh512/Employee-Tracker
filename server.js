@@ -25,22 +25,18 @@ function mainMenu() {
       switch (menuChoice) {
         case "View all departments":
           query.viewAllDepartments();
-          mainMenu();
           break;
 
         case "View all roles":
           query.viewAllRoles();
-          mainMenu();
           break;
 
         case "View all employees":
           query.viewAllEmployees();
-          mainMenu();
           break;
 
         case "Add a department":
           query.addDepartment();
-          mainMenu();
           break;
 
         case "Add a role":
@@ -55,6 +51,7 @@ function mainMenu() {
           query.updateRole();
           break;
       }
-    });
+    })
+    
 }
 mainMenu();

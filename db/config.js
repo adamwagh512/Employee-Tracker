@@ -13,23 +13,28 @@ const connection = mysql.createConnection({
 
 // simple query
 function viewAllDepartments() {
+  //selecting all from department
   connection.query("SELECT * FROM `department`", function (err, results) {
+    //showing results in console.table
     console.table(results); // results contains rows returned by server
+    //end the function
     return;
   });
 }
 
-// with placeholder
+// function to view all roles
 function viewAllRoles() {
+  //returns title,salary, and name from the roles and departments tables
   connection.query(
     "SELECT title, salary, name FROM `roles` LEFT JOIN department ON department.id = roles.department_id",
 
     function (err, results) {
+      //showing results in table
       console.table(results);
     }
   );
 }
-
+//function to view all employees
 function viewAllEmployees() {
   connection.query(
     // "SELECT title, salary, name FROM `roles` LEFT JOIN department ON department.id = roles.department_id",
@@ -39,8 +44,9 @@ function viewAllEmployees() {
     }
   );
 }
-
+//function to add a department
 function addDepartment() {
+  //inquirer prompt to designate a new department
   inquirer.prompt([
       {
         type: 'input',
@@ -57,17 +63,17 @@ function addDepartment() {
     };
 
     async function addRole() {
-      let roles = await (await connection.promise().query(`SELECT name FROM department`))
+      let roles = await (await connection.promise().query(`SELECT name, id FROM department`))
       let id = await(await connection.promise().query('SELECT id FROM department'))
-
+      
       var deptId = id[0].map(function(id) {
         return id ['id']
       })
-      console.log(deptId)
+      
       var names = roles[0].map(function(roles) {
         return roles['name']
       })
-      console.log(names)
+      
       
       inquirer.prompt([
         {
@@ -88,10 +94,10 @@ function addDepartment() {
         }
       ]).then(answers => {
           console.log(answers)
-          connection.query(
-            'INSERT INTO roles SET ?', answers.title, answers.salary, 
-            answers.department_id //need help with this
-          )
+          // connection.query(
+          //   'INSERT INTO roles SET ?', answers.title, answers.salary, 
+          //   answers.department_id //need help with this
+          // )
       })
     };
 
@@ -102,13 +108,13 @@ function addDepartment() {
       var empRole = roles[0].map(function(title) {
         return title ['title']
       })
-      console.log(empRole)
+     
 
       
       var empManager = manager[0].map(function(first_name) {
         return first_name['first_name']
       })
-      console.log(empManager)
+      
       
       inquirer.prompt([
         {
@@ -137,7 +143,33 @@ function addDepartment() {
     }
 
     async function updateRole() {
-      console.log('not here yet')
+      let emp = await(await connection.promise().query('SELECT first_name FROM employee'))
+      
+      var selectEmp = emp[0].map(function(first_name) {
+        return first_name['first_name']
+      })
+      
+      
+      let roles = await (await connection.promise().query(`SELECT title FROM roles`))
+      var roleChoice = roles[0].map(function(title) {
+        return title ['title']
+      })
+      
+
+      inquirer.prompt([
+        {
+          type: 'list',
+          name: 'chooseEmp',
+          message:'Which employee would you like to update?',
+          choices: selectEmp
+        },
+        {
+          type: 'list',
+          name: 'chooseRole',
+          message: 'Which role would you like to assign this employee?',
+          choices: roleChoice
+        },
+      ])
     }
 
 module.exports = {
